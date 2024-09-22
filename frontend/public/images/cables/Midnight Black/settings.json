@@ -1,0 +1,11 @@
+{
+	"tooltip": {
+		"text": "Hey There! 😊"
+	},
+	"header": {
+		"showAvatar": "false"
+	},
+	"chatHistory": {
+		"chatHistoryLineBreakText": "Chat History"
+	}
+}

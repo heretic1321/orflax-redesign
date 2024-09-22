@@ -1,0 +1,85 @@
+@import '../../../styles/variables.scss';
+
+.floatingButtonContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.floatingButton {
+  background-color: $highlightYellow;
+  color: $primaryBlack;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $primaryGray;
+    color: $secondaryGray;
+  }
+
+  svg {
+    font-size: 24px;
+  }
+}
+
+.menu {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.menuItem {
+  background-color: #333;
+  color: #fff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #555;
+  }
+
+  &:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #000;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
+
+  svg {
+    font-size: 24px;
+  }
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+}

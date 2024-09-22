@@ -1,0 +1,88 @@
+{
+	"tooltipStyle": {
+		"border" : "2px solid #353d3b",
+		"boxShadow": "0px 0px 10px 0px rgba(0,0,0,0.5)"
+	},
+	"chatButtonStyle": {
+		"border" : "2px solid #353d3b",
+		"boxShadow": "0px 0px 10px 0px rgba(0,0,0,0.5)"
+	},
+	"chatWindowStyle": {
+		"border" : "2px solid #353d3b",
+		"boxShadow": "0px 0px 10px 0px rgba(0,0,0,0.5)"
+	},
+	"headerStyle": {
+		"backgroundImage": "linear-gradient(to right, #030306, #030306)",
+		"color": "#F4F4F4"
+	},
+	"bodyStyle": {
+		"backgroundColor": "#151616"
+	},
+	"chatInputContainerStyle": {
+		"backgroundColor": "#030306"
+	},
+	"chatInputAreaStyle": {
+		"backgroundColor": "#030306",
+		"color": "#F4F4F4"
+	},
+	"chatInputAreaFocusedStyle": {
+		"backgroundColor": "#030306",
+		"color": "#F4F4F4"
+	},
+	"chatInputAreaDisabledStyle": {
+		"backgroundColor": "#030306"
+	},
+	"userBubbleStyle": {
+		"backgroundColor": "#121212",
+		"border": "1px solid #0829ff",
+		"borderRadius": "8px",
+		"boxShadow": "rgba(221, 221, 221, 0.2) 0px 0px 9px 0px"
+	},
+	"botBubbleStyle": {
+		"backgroundColor": "#121212",
+		"border": "1px solid #d6ddde",
+		"borderRadius": "8px",
+		"boxShadow": "rgba(221, 221, 221, 0.2) 0px 0px 9px 0px"
+	},
+	"botOptionStyle": {
+		"color": "#000",
+		"backgroundColor": "#e8dde8",
+		"boxShadow": "0px 0px 5px 0px rgba(0,0,0,0.2)"
+	},
+	"botOptionHoveredStyle": {
+		"color": "#000",
+		"backgroundColor": "#cabacd",
+		"marginTop": 1,
+		"marginLeft": 1,
+		"boxShadow": "inset 3px 3px 5px 3px rgba(0,0,0,0.1)"
+	},
+	"botCheckboxRowStyle": {
+		"color": "#000",
+		"backgroundColor": "#e8dde8",
+		"boxShadow": "0px 0px 5px 0px rgba(0,0,0,0.2)"
+	},
+	"botCheckboxNextStyle": {
+		"color": "#fff",
+		"backgroundColor": "#131159",
+		"boxShadow": "0px 0px 5px 0px rgba(0,0,0,0.2)"
+	},
+	"sendButtonStyle": {
+		"border": "1px solid #ffffff"
+	},
+	"sendButtonHoveredStyle": {
+		"border": "1px solid #ffffff"
+	},
+	"chatHistoryButtonStyle": {
+		"color": "#000",
+		"backgroundColor": "#e8dde8",
+		"border": "2px solid #fff",
+		"boxShadow": "0px 0px 5px 0px rgba(0,0,0,0.2)"
+	},
+	"chatHistoryButtonHoveredStyle": {
+		"color": "#000",
+		"backgroundColor": "#cabacd",
+		"marginTop": 1,
+		"marginLeft": 1,
+		"boxShadow": "inset 3px 3px 5px 3px rgba(0,0,0,0.1)"
+	}
+}

@@ -1,0 +1,28 @@
+.footer {
+  background-color: #333;
+  color: #aaa;
+  padding: 2rem 0;
+
+  .footer-logo {
+    height: 3rem;
+  }
+
+  .footer-links {
+    margin-bottom: 1rem;
+
+    .footer-link {
+      color: #FFC12C;
+      text-decoration: none;
+      margin: 0 0.5rem;
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        color: #e0a800;
+      }
+    }
+  }
+
+  p {
+    margin: 0.5rem 0;
+  }
+}

@@ -1,0 +1,17 @@
+@import './../../../styles/variables.scss';
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: $secondaryGray;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: $primaryGray;
+  }
+}
