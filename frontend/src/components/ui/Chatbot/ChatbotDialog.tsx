@@ -16,6 +16,8 @@ export const ChatbotDialog = ({ isOpen, onClose }: { isOpen: boolean, onClose: (
       {id: "simple_blue", version: "0.1.0"}
     ]
 
+    if (!isOpen) return null;
+
     return (
       <div>
         <button className='closeButton' onClick={onClose}>

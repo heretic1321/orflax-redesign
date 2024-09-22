@@ -2,49 +2,13 @@ import { Link } from 'react-router-dom';
 import Header from '../../components/layout/Header/Header';
 import products from '../../data/products'; // Assuming you have a products data file
 import { Product } from '../../data/products';
-import {useState} from 'react'
 
-interface filterState {
-  filterName : String,
-  filterState : Boolean
+const toggleFilter = (filterName: string) => {
+  console.log(filterName);
+
 }
 
-type filterStates  = filterState[]
-
 const ProductsPage = () => {
-  const [filterStates, setFilterState] = useState([
-    {
-      filterName : 'type',
-      filterState: false,
-    },
-    {
-      filterName : 'metal',
-      filterState: false,
-    },
-    {
-      filterName : 'style',
-      filterState: false,
-    },
-    {
-      filterName : 'length',
-      filterState: false,
-    },
-    {
-      filterName : 'price',
-      filterState: false,
-    },
-  ] as filterStates)
-
-  const toggleFilter = (filterName : String) => {
-    filterStates.forEach((value: filterState) => {
-      if (value.filterName == filterName) {
-        const newFilterStates = filterStates
-        newFilterStates.forEach((value: filterState) => {
-          
-        })
-      }
-    })
-  }
 
   return (
     <div className="bg-gradient-to-r from-primaryBlack to-primaryGray min-h-screen">
