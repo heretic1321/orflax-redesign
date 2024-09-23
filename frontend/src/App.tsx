@@ -6,7 +6,6 @@ import ProductsPage from './pages/Products/ProductsPage';
 import productsData from './pages/Products/productsData';
 import SingleProductPage from './pages/Products/SingleProductPage';
 import ContactPage from './pages/Contact/ContactPage';
-import AboutPage from './pages/About/AboutPage';
 
 function App() {
   return (
@@ -22,7 +21,7 @@ function App() {
           />
         ))}
         <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
+        <Route path="/about" element={<div/>} />
         <Route path="/services" element={<div />} />
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
