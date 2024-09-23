@@ -8,6 +8,9 @@ import SingleProductPage from './pages/Products/SingleProductPage';
 import ContactPage from './pages/Contact/ContactPage';
 import BulkSavingsCalculator from './pages/BulkSavingsCalculator/BulkSavingsCalculator';
 import AboutPage from './pages/About/AboutPage';
+import BoardOfDirectors from './pages/About/BoardOfDirectors';
+import MessageFromTeam from './pages/About/MessageFromTeam';
+
 function App() {
   return (
     <Router>
@@ -26,6 +29,8 @@ function App() {
         <Route path="/services" element={<div />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/bulk-savings-calculator" element={<BulkSavingsCalculator />} />
+        <Route path="/board-of-directors" element={<BoardOfDirectors />} />
+        <Route path="/message-from-team" element={<MessageFromTeam />} />
       </Routes>
     </Router>
   );

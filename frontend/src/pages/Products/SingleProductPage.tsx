@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../components/layout/Header/Header';
 import { CableProduct } from './../../types/product';
 import { motion } from 'framer-motion';
@@ -9,6 +9,8 @@ interface ProductPageProps {
 }
 
 const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
+  const navigate = useNavigate();
+
   useEffect(() => {
     console.log('Product received:', product);
   }, [product]);
@@ -37,6 +39,15 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
     (selectedOptions.core ? item.core === selectedOptions.core : true) &&
     (selectedOptions.conductorType ? item.conductorType === selectedOptions.conductorType : true)
   );
+
+  const handleEnquire = () => {
+    const enquiryData = {
+      product: product.name,
+      options: selectedOptions,
+      details: filteredData,
+    };
+    navigate('/contact', { state: { enquiryData } });
+  };
 
   return (
     <div className="bg-gradient-to-r from-primaryBlack to-primaryGray min-h-screen">
@@ -156,6 +167,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
               whileHover={{ scale: 1.1, backgroundColor: '#ffcc00', boxShadow: '0px 0px 8px rgba(0, 0, 0, 0.3)' }}
               whileTap={{ scale: 0.9 }}
               className="bg-highlightYellow text-primaryBlack px-6 py-3 mt-4 shadow-md transition-all duration-300 ease-in-out"
+              onClick={handleEnquire}
             >
               Enquire
             </motion.button>

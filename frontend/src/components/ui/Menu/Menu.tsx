@@ -5,6 +5,7 @@ import { MenuItem } from '../../../types/ui';
 import styles from './Menu.module.scss';
 import { useNavigate } from 'react-router-dom';
 
+
 const menuItems: MenuItem[] = [
     { name: 'Who we are', subItems: [
         { name: 'Our legacy', link: '/who-we-are/our-legacy' },
@@ -13,17 +14,16 @@ const menuItems: MenuItem[] = [
     ]},
     { name: 'What we do', subItems: [
         { name: 'Our Products', link: '/products' },
-        { name: 'Consultation', link: '/what-we-do/consultation' },
-        { name: 'Custom Manufacturing', link: '/what-we-do/custom-manufacturing' }
+        { name: 'Consultation', link: '/contact', state: { subject: 'Consultation Request', type: 'Consultation', message: 'Hey, I would like to request a consultation.' } },
+        { name: 'Custom Manufacturing', link: '/contact', state: { subject: 'Custom Manufacturing Request', type: 'Manufacturing Request', message: 'Hey, I would like to request custom manufacturing.' } }
     ]},
     { name: 'Leadership and Team', subItems: [
-        { name: 'Board of Directors', link: '/leadership-and-team/board-of-directors' },
-        { name: 'Message from Team', link: '/leadership-and-team/message-from-team' },
+        { name: 'Board of Directors', link: '/board-of-directors' },
+        { name: 'Message from Team', link: '/message-from-team' },
     ]},
     { name: 'Resources', subItems: [
         { name: 'Bulk Savings Calculator', link: '/bulk-savings-calculator' },
         { name: 'Frequently Asked Questions', link: '/tools-and-resources/frequently-asked-questions' },
-        { name: 'Sustainability', link: '/tools-and-resources/sustainability' },
     ] },
     { name: 'Contact Us', subItems: [
         { name: 'Contact Page', link: '/contact' },
@@ -49,8 +49,8 @@ const Menu = ({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean, setIsMenuOpe
         setSelectedItem(item);
     };
 
-    const handleSubItemClick = (link: string) => {
-        navigate(link); // Use navigate instead of history.push
+    const handleSubItemClick = (link: string, state?: any) => {
+        navigate(link, { state: { enquiryData: state } });
     };
 
     return (
@@ -105,7 +105,7 @@ const Menu = ({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean, setIsMenuOpe
                                                 initial={{ opacity: 0, y: 20 }}
                                                 animate={{ opacity: 1, y: 0 }}
                                                 transition={{ delay: index * 0.1 }}
-                                                onClick={() => handleSubItemClick(subItem.link)}
+                                                onClick={() => handleSubItemClick(subItem.link, subItem.state)}
                                                 className={`cursor-pointer  p-4 bg-secondaryGray text-primaryBlack text-xl font-bold rounded-lg shadow-lg ${styles.card} h-52 w-52`}
                                             >
                                                 {subItem.name}
