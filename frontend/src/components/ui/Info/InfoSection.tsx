@@ -3,7 +3,7 @@ import sampleVideo from'./../../../assets/videos/advertisement1.mp4'
 import { useEffect, useRef, useState } from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import madeInIndiaLogo from './../../../assets/images/makeInIndiaLogo.png'
-import { div, section } from 'framer-motion/client';
+
 const InfoSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [currentQuoteIndex, setCurrentQuoteIndex] = useState(0);
