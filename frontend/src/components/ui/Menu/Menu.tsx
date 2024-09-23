@@ -26,10 +26,7 @@ const menuItems: MenuItem[] = [
         { name: 'Sustainability', link: '/tools-and-resources/sustainability' },
     ] },
     { name: 'Contact Us', subItems: [
-        { name: 'Live Chat', link: '/contact-us/live-chat' },
-        { name: 'Enquiry Form', link: '/contact-us/enquiry-form' },
-        { name: 'Connect with us', link: '/contact-us/connect-with-us' },
-        { name: 'Find us on maps', link: '/contact-us/find-us-on-maps' },
+        { name: 'Contact Page', link: '/contact' },
 
     ] },
 ];
