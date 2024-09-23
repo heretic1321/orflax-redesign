@@ -109,7 +109,7 @@ const productsData: { [key: string]: CableProduct } = {
     aluminiumSolidConductorCable : {
         id: 5,
         name: "Aluminium Cable with Solid Conductor",
-        image: "AluminiumCableWithSolidConductorBgRemoved.png",
+        image: "AluminiumCableWithSolidConductorBgRemoved Background Removed.png",
         description: "Aluminium cables with solid conductors for industrial and residential applications. Available in various sizes with both single unsheathed and twin flat sheathed options.",
         series: ["Evo"],
         options: {
@@ -201,7 +201,7 @@ const productsData: { [key: string]: CableProduct } = {
     nexaMultistrandWires : {
         id: 9,
         name: "Nexa Series Multistrand Wires",
-        image: "multistrandWireNexaSeriesBgRemoved.png",
+        image: "multistrandWireNexaSeries.jpeg",
         description: "PVC Insulated Copper Conductor Multistrand Wires for industrial and residential applications, compliant with IS:694 standards. Available in different conductor sizes.",
         series: ["Nexa"],
         options: {
