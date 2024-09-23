@@ -1,24 +1,18 @@
 import Header from '../../components/layout/Header/Header';
-import { useState } from 'react';
-const BulkOrderCalculator = () => {
-  const [product, setProduct] = useState('Flexible Alloy Wire'); // Default product
-  const [type, setType] = useState('45'); // For wire length
-  const [dimension, setDimension] = useState('18/40'); // For Flexible Alloy Wire
-  const [coils, setCoils] = useState(0);
-  const [totalAmount, setTotalAmount] = useState(0);
-  const [totalSavings, setTotalSavings] = useState(0);
+import { useState, useEffect } from 'react';
+import './BulkSavingsCalculator.scss'; // Import the CSS file
 
+const BulkOrderCalculator = () => {
   // Define the type for the pricing object
   type PricingType = {
-    'Flexible Alloy Wire': {
-      '45': { '18/40': number; '23/40': number; '30/40': number; '40/40': number; '50/40': number; };
-      '90': { '18/40': number; '23/40': number; '30/40': number; '40/40': number; '50/40': number; };
+    [product: string]: {
+      [type: string]: {
+        [dimension: string]: number;
+      };
     };
-    'Multistrand Wire': { /* similar structure */ };
-    'Submersible Wire': { /* similar structure */ };
   };
 
-  // Assume pricing is of type PricingType
+  // Define the pricing object
   const pricing: PricingType = {
     'Flexible Alloy Wire': {
       '45': {
@@ -34,7 +28,7 @@ const BulkOrderCalculator = () => {
         '30/40': 785,
         '40/40': 995,
         '50/40': 1175,
-      }
+      },
     },
     'Multistrand Wire': {
       '45': {
@@ -52,7 +46,7 @@ const BulkOrderCalculator = () => {
         '56/0.3': 6160,
         '84/0.3': 9150,
         '140/0.3': 15200,
-      }
+      },
     },
     'Submersible Wire': {
       '100': {
@@ -61,27 +55,51 @@ const BulkOrderCalculator = () => {
         '56/0.3': 22360,
         '84/0.3': 32070,
         '140/0.3': 52410,
-      }
-    }
+      },
+    },
   };
+
+  // State variables
+  const [product, setProduct] = useState<keyof PricingType>('Flexible Alloy Wire'); // Default product
+  const [type, setType] = useState<string>('45'); // For wire length
+  const [dimension, setDimension] = useState<string>('18/40'); // For Flexible Alloy Wire
+  const [coils, setCoils] = useState(50);
+  const [totalAmount, setTotalAmount] = useState(0);
+  const [totalSavings, setTotalSavings] = useState(0);
+  const [displayedSavings, setDisplayedSavings] = useState(0);
+
+  // Define font size ranges
+  const minFontSizeTotal = 1.5; // rem
+  const maxFontSizeTotal = 2.5; // rem
+
+  const minFontSizeSavings = 1; // rem
+  const maxFontSizeSavings = 2.5; // rem
+
+  const minCoils = 50;
+  const maxCoils = 150;
+
+  // Calculate font sizes based on coils
+  const fontSizeTotal =
+    maxFontSizeTotal -
+    ((coils - minCoils) / (maxCoils - minCoils)) * (maxFontSizeTotal - minFontSizeTotal);
+
+  const fontSizeSavings =
+    minFontSizeSavings +
+    ((coils - minCoils) / (maxCoils - minCoils)) * (maxFontSizeSavings - minFontSizeSavings);
 
   // Handle Calculation
   const calculateTotal = () => {
-    const product: keyof PricingType = 'Flexible Alloy Wire'; // or dynamically set
-    const type: '45' | '90' = '45'; // or dynamically set
-    const dimension: '18/40' | '23/40' | '30/40' | '40/40' | '50/40' = '18/40'; // or dynamically set
-
     const rate = pricing[product][type][dimension];
     let amount = rate * coils;
     let savings = 0;
 
     // Apply discount based on the number of coils
-    if (coils === 50) {
-      savings = amount * 0.1; // 10% discount for 50 coils
-    } else if (coils === 100) {
-      savings = amount * 0.15; // 15% discount for 100 coils
-    } else if (coils === 150) {
-      savings = amount * 0.2; // 20% discount for 150 coils
+    if (coils >= 50 && coils < 100) {
+      savings = amount * 0.1; // 10% discount for 50-99 coils
+    } else if (coils >= 100 && coils < 150) {
+      savings = amount * 0.15; // 15% discount for 100-149 coils
+    } else if (coils >= 150) {
+      savings = amount * 0.2; // 20% discount for 150+ coils
     }
 
     amount = amount - savings;
@@ -89,9 +107,46 @@ const BulkOrderCalculator = () => {
     setTotalSavings(savings);
   };
 
+  useEffect(() => {
+    calculateTotal();
+  }, [product, type, dimension, coils]);
+
+  // Easing function for deceleration (using easeOutQuint)
+  const customEaseOut = (t: number) => {
+    return 1 - Math.pow(1 - t, 10);
+  };
+  
+
+  // Animate savings counter with deceleration
+  useEffect(() => {
+    let animationFrame: number;
+    const duration = 1000; // Animation duration in milliseconds
+    const startTime = performance.now();
+    const startSavings = displayedSavings;
+    const endSavings = totalSavings;
+
+    const animate = (time: number) => {
+      const elapsed = time - startTime;
+      const linearProgress = Math.min(elapsed / duration, 1);
+      const easedProgress = customEaseOut(linearProgress);
+      const currentSavings = startSavings + (endSavings - startSavings) * easedProgress;
+      setDisplayedSavings(currentSavings);
+
+      if (linearProgress < 1) {
+        animationFrame = requestAnimationFrame(animate);
+      }
+    };
+
+    animationFrame = requestAnimationFrame(animate);
+
+    return () => {
+      cancelAnimationFrame(animationFrame);
+    };
+  }, [totalSavings]);
+
   // Set dimension options dynamically based on selected product and type
   const getDimensionOptions = () => {
-    return Object.keys(pricing[product as keyof PricingType][type as keyof PricingType[keyof PricingType]]).map((dim) => (
+    return Object.keys(pricing[product][type]).map((dim) => (
       <option key={dim} value={dim}>
         {dim}
       </option>
@@ -100,7 +155,7 @@ const BulkOrderCalculator = () => {
 
   // Ensure type and dimension are reset properly when switching products
   const handleProductChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedProduct = e.target.value;
+    const selectedProduct = e.target.value as keyof PricingType;
     setProduct(selectedProduct);
 
     // Reset type and dimension when product changes
@@ -118,19 +173,27 @@ const BulkOrderCalculator = () => {
       <Header />
       <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="bg-secondaryGray p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6 text-center text-primaryBlack">Bulk Savings Calculator</h2>
-          <h3 className="text-xl mb-8 text-center text-primaryBlack">Get a discount on your Bulk Order!</h3>
+          <h2 className="text-6xl font-bold mb-6 text-center text-primaryBlack font-secondary">
+            Bulk Savings Calculator
+          </h2>
+          <h3 className="text-xl mb-8 text-center text-primaryBlack">
+            Get a discount on your Bulk Order!
+          </h3>
 
           {/* Product Selection */}
           <div className="mb-6">
-            <label className="block text-lg font-medium text-primaryBlack mb-2">Select Product:</label>
+            <label className="block text-lg font-medium text-primaryBlack mb-2">
+              Select Product:
+            </label>
             <div className="flex justify-center space-x-4">
               {['Flexible Alloy Wire', 'Multistrand Wire', 'Submersible Wire'].map((item) => (
                 <button
                   key={item}
-                  onClick={() => handleProductChange({ 
-                    target: { value: item } 
-                  } as React.ChangeEvent<HTMLSelectElement>)}
+                  onClick={() =>
+                    handleProductChange({
+                      target: { value: item },
+                    } as React.ChangeEvent<HTMLSelectElement>)
+                  }
                   className={`px-4 py-2 rounded-lg shadow-md transition-all duration-300 ease-in-out ${
                     product === item ? 'bg-highlightYellow text-primaryBlack' : 'bg-white text-primaryBlack'
                   } hover:bg-highlightYellow hover:text-primaryBlack`}
@@ -175,34 +238,34 @@ const BulkOrderCalculator = () => {
 
           {/* Number of Coils */}
           <div className="mb-6">
-            <label className="block text-lg font-medium text-primaryBlack mb-2">Number of Coils:</label>
+            <label className="block text-lg font-medium text-primaryBlack mb-2">
+              Number of Coils:
+            </label>
             <input
               type="range"
-              min="0"
-              max="150"
+              min={minCoils}
+              max={maxCoils}
               value={coils}
               onChange={(e) => setCoils(Number(e.target.value))}
-              className="w-full"
+              className="block w-full py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md focus:border-blue-500 focus:outline-none focus:ring"
             />
             <div className="text-center mt-2">{coils} Coils</div>
           </div>
 
-          {/* Calculate Button */}
-          <div className="mb-6 text-center">
-            <button
-              onClick={calculateTotal}
-              className="bg-highlightYellow text-primaryBlack px-6 py-3 rounded-lg shadow-md hover:bg-yellow-500 transition-all duration-300 ease-in-out"
-            >
-              Calculate
-            </button>
-          </div>
-
           {/* Output: Total Amount & Savings */}
           <div className="text-center">
-            <h3 className="text-2xl font-bold text-primaryBlack">Total Amount: ₹{totalAmount.toFixed(2)}</h3>
-            {totalSavings > 0 && (
-              <h4 className="text-xl text-primaryBlack mt-2">You saved: ₹{totalSavings.toFixed(2)}!</h4>
-            )}
+            <h3
+              className="font-bold text-primaryBlack"
+              style={{ fontSize: `${fontSizeTotal}rem` }}
+            >
+              Total Amount: ₹{totalAmount.toFixed(2)}
+            </h3>
+            <h4
+              className={`text-primaryBlack mt-2 text-highlightYellow savings-transition`}
+              style={{ fontSize: `${fontSizeSavings}rem` }}
+            >
+              You saved: ₹{displayedSavings.toFixed(2)}! 💰
+            </h4>
           </div>
         </div>
       </div>

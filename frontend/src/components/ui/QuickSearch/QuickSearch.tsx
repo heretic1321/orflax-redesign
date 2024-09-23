@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
 const quickSearchItems = [
-    { name: 'Renewables', link: '/renewables' },
-    { name: 'Wind Energy', link: '/wind-energy' },
+    { name: 'Our Products', link: '/products' },
+    { name: 'Custom Manufacturing', link: '/wind-energy' },
     { name: 'Hydro Energy', link: '/hydro-energy' },
     { name: 'Sustainability', link: '/sustainability' },
     { name: 'Community', link: '/community' },
