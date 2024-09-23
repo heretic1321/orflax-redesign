@@ -7,28 +7,28 @@ import productsData from './productsData'; // Updated import
 import { CableProduct } from './../../types/product';
 
 // Define the type for filterOptions keys
-type FilterOptionKeys = 'series' | 'conductorType' | 'core' | 'length'
+type FilterOptionKeys = 'series' | 'conductorType' | 'core' | 'length';
 
 // Ensure filterOptions is typed correctly
 const filterOptions: Record<FilterOptionKeys, { id: number; name: string, value: string }[]> = {
   series: [
-    { id: 1, name: 'Evo', value: "Evo" },
-    { id: 2, name: "Nexa", value: "Nexa" },
+    { id: 1, name: 'Evo', value: 'Evo' },
+    { id: 2, name: 'Nexa', value: 'Nexa' },
   ],
   conductorType: [
-    { id: 1, name: 'Single Conductor', value: "Single" },
-    { id: 2, name: 'Multiple Conductor', value: "Multiple" },
+    { id: 1, name: 'Single Conductor', value: 'Single' },
+    { id: 2, name: 'Multiple Conductor', value: 'Multiple' },
   ],
   core: [
-    { id: 1, name: '2 cores', value: "2" },
-    { id: 2, name: '3 cores', value: "3" },
-    { id: 3, name: '4 cores', value: "4" },
+    { id: 1, name: '2 cores', value: '2' },
+    { id: 2, name: '3 cores', value: '3' },
+    { id: 3, name: '4 cores', value: '4' },
   ],
   length: [
-    { id: 1, name: '45 meters', value: "45" },
-    { id: 2, name: '90 meters', value: "90" },
-    { id: 3, name: '100 meters', value: "100" },
-    { id: 4, name: '250 meters', value: "250" },
+    { id: 1, name: '45 meters', value: '45' },
+    { id: 2, name: '90 meters', value: '90' },
+    { id: 3, name: '100 meters', value: '100' },
+    { id: 4, name: '250 meters', value: '250' },
   ],
 };
 
@@ -66,8 +66,8 @@ const ProductsPage = () => {
       const selectedOptions = selectedFilters[filterName];
       if (selectedOptions && selectedOptions.length > 0) {
         const filterOptionValues = filterOptions[filterName as FilterOptionKeys]
-          .filter(option => selectedOptions.includes(option.id))
-          .map(option => option.value);
+          .filter((option) => selectedOptions.includes(option.id))
+          .map((option) => option.value);
 
         if (filterName === 'series' && !filterOptionValues.includes(product.series[0])) {
           return false;
@@ -86,7 +86,7 @@ const ProductsPage = () => {
     return true;
   };
 
-  const filteredProducts = Object.values(productsData).filter(filterProducts);
+  const filteredProducts = Object.entries(productsData).filter(([_, product]) => filterProducts(product));
 
   const navigate = useNavigate();
 
@@ -96,7 +96,10 @@ const ProductsPage = () => {
       <div className="px-4 py-8">
         <div className="w-full mb-8 lg:mb-0 px-4">
           <nav className="text-secondaryGray mb-4">
-            <Link to="/" className="hover:underline">Home</Link> /  <span className="text-secondaryGray">  Products</span>
+            <Link to="/" className="hover:underline">
+              Home
+            </Link>{' '}
+            / <span className="text-secondaryGray"> Products</span>
           </nav>
           <h1 className="text-4xl font-bold text-secondaryGray mb-2 font-secondary">Our Products</h1>
           <p className="text-secondaryGray mb-8">
@@ -105,7 +108,7 @@ const ProductsPage = () => {
           <div className="flex items-center justify-between mb-4 space-x-4">
             <button className="text-secondaryGray" onClick={() => setFiltersVisible(!filtersVisible)}>
               {filtersVisible ? 'Hide Filters' : 'Show Filters'}
-            </button> 
+            </button>
             <span className="text-secondaryGray">{filteredProducts.length} items</span>
             <button className="text-secondaryGray">Sort ⇅</button>
           </div>
@@ -115,7 +118,9 @@ const ProductsPage = () => {
                 {Object.keys(filterOptions).map((filterName) => (
                   <div key={filterName} className="mb-4">
                     <div className="flex justify-between items-center">
-                      <h2 className="text-lg font-bold text-secondaryGray">{filterName.charAt(0).toUpperCase() + filterName.slice(1)}</h2>
+                      <h2 className="text-lg font-bold text-secondaryGray">
+                        {filterName.charAt(0).toUpperCase() + filterName.slice(1)}
+                      </h2>
                       <button
                         className="cursor-pointer text-lg font-bold text-secondaryGray"
                         onClick={() => toggleFilterVisibility(filterName)}
@@ -145,22 +150,24 @@ const ProductsPage = () => {
                 ))}
               </div>
             )}
-            <section className={`w-full ${filtersVisible ? 'lg:w-3/4' : 'lg:w-full'} grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6`}>
-              {filteredProducts.map((product: CableProduct, index: number) => (
-                <motion.div 
-                  key={index} 
+            <section
+              className={`w-full ${filtersVisible ? 'lg:w-3/4' : 'lg:w-full'} grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6`}
+            >
+              {filteredProducts.map(([key, product]: [string, CableProduct], index: number) => (
+                <motion.div
+                  key={index}
                   className="overflow-hidden shadow-lg bg-transparent cursor-pointer"
-                  onClick={() => navigate(`/products/${encodeURIComponent(product.name)}`)}
+                  onClick={() => navigate(`/products/${key}`)}
                 >
                   <div className="relative aspect-square overflow-hidden border border-white border-solid border-4 bg-transparent">
                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-0"></div>
-                    <img 
-                      src={`/images/cables/${product.image}`} 
-                      alt={product.name} 
+                    <img
+                      src={`/images/cables/${product.image}`}
+                      alt={product.name}
                       className="w-full h-full object-contain relative z-10"
                     />
                   </div>
-                  <motion.div 
+                  <motion.div
                     className="p-4 border border-white border-solid bg-transparent flex justify-between items-center group"
                     whileHover={{ backgroundColor: 'white', transition: { duration: 0.3, ease: 'easeInOut' } }}
                   >
@@ -172,10 +179,8 @@ const ProductsPage = () => {
                         from Rs.{product.data[0].rate}
                       </p>
                     </div>
-                    <motion.div 
-                      className="text-white group-hover:text-primaryBlack"
-                    >
-                      <FaArrowRight className=" group-hover:scale-110 group-hover:translate-x-1 transition-transform duration-300 ease-in-out"/>
+                    <motion.div className="text-white group-hover:text-primaryBlack">
+                      <FaArrowRight className=" group-hover:scale-110 group-hover:translate-x-1 transition-transform duration-300 ease-in-out" />
                     </motion.div>
                   </motion.div>
                 </motion.div>

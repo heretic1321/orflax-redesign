@@ -3,6 +3,7 @@ import { CableProduct } from './../../types/product';
 const productsData: { [key: string]: CableProduct } = {
     // Multistrand Wires
     multistrandWire : {
+        id: 1,
         name: "Multistrand Wire",
         image: "multistrandWireBgRemoved.png",
         description: "PVC insulated copper conductor multistrand wires designed for 1100 volts IS:694 : 2010 compliance. Available in various lengths and conductor sizes.",
@@ -28,6 +29,7 @@ const productsData: { [key: string]: CableProduct } = {
     },
     // Multicore Round Flexible Wires
     multicoreRoundFlexibleWire : {
+        id: 2,
         name: "Multicore Round Flexible Wire",
         image: "multicoreRoundCableWires.png",
         description: "Multicore round flexible wires for electrical applications, with various core options and high flexibility. Designed for industrial and residential wiring.",
@@ -51,6 +53,7 @@ const productsData: { [key: string]: CableProduct } = {
     },
     // Submersible Cables
     submersibleCable : {
+        id: 3,
         name: "Submersible Cable",
         image: "SubmersibleCablesBgRemoved.png",
         description: "High-grade submersible cables designed to operate in underwater applications, with excellent insulation and robust performance.",
@@ -69,6 +72,7 @@ const productsData: { [key: string]: CableProduct } = {
     },
     // Aluminium Round Cables
     aluminiumRoundCable : {
+        id: 4,
         name: "Aluminium Round Cable",
         image: "AluminiumRoundCableBgRemoved.png",
         description: "Aluminium round cables with options for single and multiple conductors. Suitable for various industrial and residential applications, compliant with IS:694 standards.",
@@ -103,6 +107,7 @@ const productsData: { [key: string]: CableProduct } = {
         ]
     },
     aluminiumSolidConductorCable : {
+        id: 5,
         name: "Aluminium Cable with Solid Conductor",
         image: "AluminiumCableWithSolidConductorBgRemoved.png",
         description: "Aluminium cables with solid conductors for industrial and residential applications. Available in various sizes with both single unsheathed and twin flat sheathed options.",
@@ -133,6 +138,7 @@ const productsData: { [key: string]: CableProduct } = {
         ]
     },
     coAxialCableCopperConductor : {
+        id: 6,
         name: "Co-Axial Cable",
         image: "CoaxialCableBgRemoved.png",
         description: "PVC insulated coaxial cable with a copper conductor, designed for reliable signal transmission in various applications. Available in multiple sizes for 100-meter lengths.",
@@ -148,6 +154,7 @@ const productsData: { [key: string]: CableProduct } = {
         ]
     },
     parallelFlatCable : {
+        id: 7,
         name: "Parallel Flat Cable",
         image: "ParallelFlatCableBgRemoved.png",
         description: "PVC insulated flat cable with copper conductor, ideal for household and industrial applications. Available in multiple conductor sizes and lengths.",
@@ -172,6 +179,7 @@ const productsData: { [key: string]: CableProduct } = {
         ]
     },
     flexibleCopperWire : {
+        id: 8,
         name: "Flexible Copper Wire",
         image: "FlexibleCopperWireBgRemoved.png",
         description: "PVC insulated flexible copper wire for various electrical and industrial applications. Available in different conductor sizes with options for 45 or 90 meters.",
@@ -191,6 +199,7 @@ const productsData: { [key: string]: CableProduct } = {
          ]
     },
     nexaMultistrandWires : {
+        id: 9,
         name: "Nexa Series Multistrand Wires",
         image: "multistrandWireNexaSeriesBgRemoved.png",
         description: "PVC Insulated Copper Conductor Multistrand Wires for industrial and residential applications, compliant with IS:694 standards. Available in different conductor sizes.",
@@ -210,6 +219,7 @@ const productsData: { [key: string]: CableProduct } = {
         ]
     },
     nexaSubmersibleCables : {
+        id: 10,
         name: "Nexa Series Submersible Cables",
         image: "SubmersibleCablesBgRemoved.png",
         description: "PVC Insulated and Sheathed 3 Core Flat Copper Conductor Industrial Cables for submersible applications, compliant with IS:694 standards.",

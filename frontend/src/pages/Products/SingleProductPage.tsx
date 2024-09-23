@@ -1,19 +1,24 @@
-import React, { useState } from 'react';
-import productsData from './productsData';
-import { CableProduct, CableProducts } from './../../types/product'; // Updated import
-import productsData2 from './../../data/products';
+import React, { useState, useEffect } from 'react';
+import { CableProduct } from './../../types/product'; // Updated import
 
 interface ProductPageProps {
-  product: keyof CableProducts;
+  product: CableProduct; // Updated to receive the complete CableProduct type
 }
 
 const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
-  const productData: CableProduct = productsData[product];
+  useEffect(() => {
+    console.log('Product received:', product);
+  }, [product]);
+
+  if (!product || !product.options) {
+    return <div>Product data is not available.</div>;
+  }
+
   const [selectedOptions, setSelectedOptions] = useState({
-    length: productData.options.length ? productData.options.length[0] : null,
-    normalAreaOfConductor: productData.options.normalAreaOfConductor ? productData.options.normalAreaOfConductor[0] : null,
-    core: productData.options.cores ? productData.options.cores[0] : null,
-    conductorType: productData.options.conductorType ? productData.options.conductorType[0] : null,
+    length: product.options.length ? product.options.length[0] : null,
+    normalAreaOfConductor: product.options.normalAreaOfConductor ? product.options.normalAreaOfConductor[0] : null,
+    core: product.options.cores ? product.options.cores[0] : null,
+    conductorType: product.options.conductorType ? product.options.conductorType[0] : null,
   });
 
   const handleOptionChange = (optionType: string, value: any) => {
@@ -23,7 +28,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
     }));
   };
 
-  const filteredData = productData.data.find((item) => 
+  const filteredData = product.data.find((item) => 
     item.length === selectedOptions.length &&
     item.normalAreaOfConductor === selectedOptions.normalAreaOfConductor &&
     (selectedOptions.core ? item.core === selectedOptions.core : true) &&
@@ -35,13 +40,13 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
       <div className="flex flex-col lg:flex-row">
         <div className="lg:w-1/2 w-full">
           <img 
-            src={`/images/cables/${productData.image}`} 
-            alt={productData.name} 
+            src={`/images/cables/${product.image}`} 
+            alt={product.name} 
             className="w-full h-auto object-contain"
           />
           <div className="mt-4">
-            <h1 className="text-4xl font-bold mb-2">{productData.name}</h1>
-            <p className="text-lg mb-4">{productData.description}</p>
+            <h1 className="text-4xl font-bold mb-2">{product.name}</h1>
+            <p className="text-lg mb-4">{product.description}</p>
             {filteredData && (
               <div>
                 <p><strong>Normal Area of Conductor:</strong> {filteredData.normalAreaOfConductor} sq.mm</p>
@@ -58,7 +63,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
             <h2 className="text-2xl font-bold mb-2">Options</h2>
             <div className="mb-4">
               <label className="block text-lg font-bold mb-2">Length</label>
-              {productData.options.length.map((length) => (
+              {product.options.length.map((length) => (
                 <button 
                   key={length} 
                   className={`mr-2 mb-2 px-4 py-2 border ${selectedOptions.length === length ? 'border-black' : 'border-gray-300'}`}
@@ -70,7 +75,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
             </div>
             <div className="mb-4">
               <label className="block text-lg font-bold mb-2">Normal Area of Conductor</label>
-              {productData.options?.normalAreaOfConductor?.map((area) => (
+              {product.options?.normalAreaOfConductor?.map((area) => (
                 <button 
                   key={area} 
                   className={`mr-2 mb-2 px-4 py-2 border ${selectedOptions.normalAreaOfConductor === area ? 'border-black' : 'border-gray-300'}`}
@@ -80,10 +85,10 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
                 </button>
               ))}
             </div>
-            {productData.options.cores && (
+            {product.options.cores && (
               <div className="mb-4">
                 <label className="block text-lg font-bold mb-2">Core</label>
-                {productData.options.cores.map((core) => (
+                {product.options.cores.map((core) => (
                   <button 
                     key={core} 
                     className={`mr-2 mb-2 px-4 py-2 border ${selectedOptions.core === core ? 'border-black' : 'border-gray-300'}`}
@@ -94,10 +99,10 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
                 ))}
               </div>
             )}
-            {productData.options.conductorType && (
+            {product.options.conductorType && (
               <div className="mb-4">
                 <label className="block text-lg font-bold mb-2">Conductor Type</label>
-                {productData.options.conductorType.map((type) => (
+                {product.options.conductorType.map((type) => (
                   <button 
                     key={type} 
                     className={`mr-2 mb-2 px-4 py-2 border ${selectedOptions.conductorType === type ? 'border-black' : 'border-gray-300'}`}

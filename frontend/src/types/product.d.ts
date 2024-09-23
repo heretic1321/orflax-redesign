@@ -24,6 +24,7 @@ type CableOptions = {
   
   // Defining the full product entry structure
   export interface CableProduct {
+    id: number;
     name: string;
     image: string;
     description: string;
