@@ -36,7 +36,7 @@ const InfoSection = () => {
         <img src={madeInIndiaLogo} alt="Hero" className="object-fit" />
       </div>
       <div className="box">
-        <video ref={videoRef} className="w-full h-full object-cover" autoPlay loop>
+        <video ref={videoRef} className="w-full h-full object-cover" autoPlay loop muted>
           <source src={sampleVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>

@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { FaArrowRight } from 'react-icons/fa';
 import Header from '../../components/layout/Header/Header';
 import products from '../../data/products'; // Assuming you have a products data file
 import { Product } from '../../data/products';
 
 const toggleFilter = (filterName: string) => {
   console.log(filterName);
-
 }
 
 const ProductsPage = () => {
-
   return (
     <div className="bg-gradient-to-r from-primaryBlack to-primaryGray min-h-screen">
       <Header />
@@ -36,7 +36,6 @@ const ProductsPage = () => {
             <div className="mb-4 flex justify-between mr-4">
               <h2 className="text-lg font-bold text-secondaryGray">Metal</h2>
               <button className="cusor-pointer text-lg font-bold text-secondaryGray" onClick={() => toggleFilter("metal")}>+</button>
-
               {/* Add filter options here */}
             </div>
             <div className="mb-4 flex justify-between mr-4">
@@ -56,19 +55,39 @@ const ProductsPage = () => {
             </div>
           </aside>
           
-          <section className="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <section className="w-full md:w-3/4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {products.map((product: Product, index: number) => (
-              <div key={index} className="p-2 rounded-lg shadow-md border border-4 border-white">
-                <div className="relative mb-4 rounded overflow-hidden bg-gradient-to-b from-white/0 to-white">
+              <motion.div 
+                key={index} 
+                className="overflow-hidden shadow-lg bg-transparent"
+              >
+                <div className="relative aspect-square overflow-hidden border border-white border-solid border-4 bg-transparent">
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-0"></div>
                   <img 
                     src={`${product.image}`} 
                     alt={product.name} 
-                    className="object-contain z-20"
+                    className="w-full h-full object-contain relative z-10"
                   />
                 </div>
-                <h3 className="text-lg font-bold text-white">{product.name}</h3>
-                <p className="text-secondaryGray">from Rs.{product.price}</p>
-              </div>
+                <motion.div 
+                  className="p-4 border border-white border-solid bg-transparent flex justify-between items-center group"
+                  whileHover={{ backgroundColor: 'white', transition: { duration: 0.3, ease: 'easeInOut' } }}
+                >
+                  <div>
+                    <h3 className="text-lg font-bold mb-1 truncate text-white group-hover:text-primaryBlack">
+                      {product.name}
+                    </h3>
+                    <p className="text-secondaryGray text-sm text-white group-hover:text-primaryBlack">
+                      from Rs.{product.price}
+                    </p>
+                  </div>
+                  <motion.div 
+                    className="text-white group-hover:text-primaryBlack"
+                  >
+                    <FaArrowRight className=" group-hover:scale-110 group-hover:translate-x-1 transition-transform duration-300 ease-in-out"/>
+                  </motion.div>
+                </motion.div>
+              </motion.div>
             ))}
           </section>
         </div>
