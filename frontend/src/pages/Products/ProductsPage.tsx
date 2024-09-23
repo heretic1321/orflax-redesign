@@ -102,7 +102,7 @@ const ProductsPage = () => {
             / <span className="text-secondaryGray"> Products</span>
           </nav>
           <h1 className="text-4xl font-bold text-secondaryGray mb-2 font-secondary">Our Products</h1>
-          <p className="text-secondaryGray mb-8">
+          <p className="text-secondaryGray mb-8 w-1/2">
             Our brand of wires & cables matches highest international standards for quality and dependability each Cable/Wire undergoes rigorous quality check at every stage right from purchasing of raw materials to designing, manufacturing & dispatching.
           </p>
           <div className="flex items-center justify-between mb-4 space-x-4">

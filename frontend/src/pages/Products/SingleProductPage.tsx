@@ -50,7 +50,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
               <img 
                 src={`/images/cables/${product.image}`} 
                 alt={product.name} 
-                className=" object-cover relative z-20"
+                className=" object-cover relative z-10"
               />
               
             </div>

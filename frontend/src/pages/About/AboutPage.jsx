@@ -1,13 +1,14 @@
 import './AboutPage.scss';
-import CeoPop from './CeoPop';
+import FAQ from './FAQ';
+import Header from './../../components/layout/Header/Header';
 
 const AboutPage = () => {
     return (
-        <div className="bg-">
-            <CeoPop/>
+        <div className="bg-gradient-to-r from-primaryBlack to-primaryGray min-h-screen">
+            <Header/>
+            <FAQ/>
         </div>
     );
 };
 
-export default AboutPage
-
+export default AboutPage;

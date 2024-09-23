@@ -12,7 +12,7 @@ const menuItems: MenuItem[] = [
         { name: 'Our vision', link: '/who-we-are/our-vision' },
     ]},
     { name: 'What we do', subItems: [
-        { name: 'Our Products', link: '/what-we-do/our-products' },
+        { name: 'Our Products', link: '/products' },
         { name: 'Consultation', link: '/what-we-do/consultation' },
         { name: 'Custom Manufacturing', link: '/what-we-do/custom-manufacturing' }
     ]},
@@ -21,7 +21,7 @@ const menuItems: MenuItem[] = [
         { name: 'Message from Team', link: '/leadership-and-team/message-from-team' },
     ]},
     { name: 'Resources', subItems: [
-        { name: 'Bulk Savings Calculator', link: '/tools-and-resources/bulk-savings-calculator' },
+        { name: 'Bulk Savings Calculator', link: '/bulk-savings-calculator' },
         { name: 'Frequently Asked Questions', link: '/tools-and-resources/frequently-asked-questions' },
         { name: 'Sustainability', link: '/tools-and-resources/sustainability' },
     ] },
@@ -63,9 +63,9 @@ const Menu = ({ isMenuOpen, setIsMenuOpen }: { isMenuOpen: boolean, setIsMenuOpe
                     initial={{ height: 0 }}
                     animate={{ height: '92vh' }}
                     transition={{ duration: 0.5, ease: 'easeInOut' }}
-                    className="absolute left-0 w-full top-16 bg-primaryBlack text-secondaryGray z-50"
+                    className="absolute left-0 w-full top-16 bg-primaryBlack text-secondaryGray z-50" // Increased z-index to 50
                 >
-                    <div className="flex mx-4 h-full">
+                    <div className="flex mx-4 h-full z-20">
                         <div className="w-1/3 p-4">
                             {menuItems.map((item, index) => (
                                 <motion.div
