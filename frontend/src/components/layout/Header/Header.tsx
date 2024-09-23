@@ -11,6 +11,7 @@ const Header = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isQuickSearchVisible, setIsQuickSearchVisible] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
     const toggleSearch = () => {
@@ -44,6 +45,8 @@ const Header = () => {
                                 <input
                                     type="text"
                                     placeholder="Search..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
                                     className="flex-grow p-2 bg-transparent border-none outline-none"
                                 />
                                 <FaTimes size={24} className="cursor-pointer" onClick={toggleSearch} />
@@ -56,7 +59,7 @@ const Header = () => {
                     <Menu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/> {/* Replace the old menu button with the Menu component */}
                 </div>
             </div>
-            {isSearchOpen && <QuickSearch isVisible={isQuickSearchVisible} />}
+            {isSearchOpen && <QuickSearch isVisible={isQuickSearchVisible} searchTerm={searchTerm} />}
         </header>
     );
 };

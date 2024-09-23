@@ -5,25 +5,27 @@ import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 
 const quickSearchItems = [
     { name: 'Our Products', link: '/products' },
-    { name: 'Custom Manufacturing', link: '/wind-energy' },
-    { name: 'Hydro Energy', link: '/hydro-energy' },
-    { name: 'Sustainability', link: '/sustainability' },
-    { name: 'Community', link: '/community' },
-    { name: 'EZ Home', link: '/ez-home' },
-    { name: 'IOT & Automation', link: '/iot-automation' },
-    { name: 'Transmission & Distribution', link: '/transmission-distribution' },
-    { name: 'Tata Power', link: '/tata-power' },
-    { name: 'Who we are', link: '/who-we-are' },
-    { name: 'Energy Services', link: '/energy-services' },
-    { name: 'People', link: '/people' },
-    { name: 'Solar Energy', link: '/solar-energy' },
-    { name: 'What we do', link: '/what-we-do' },
-    { name: 'News and Media', link: '/news-media' },
-    { name: 'Thermal Energy', link: '/thermal-energy' },
-    { name: 'Investor', link: '/investor' },
+    { name: 'Custom Manufacturing', link: '/contact', state: { subject: 'Custom Manufacturing Request', type: 'Manufacturing Request', message: 'Hey, I would like to request custom manufacturing.' } },
+    { name: 'Consultation Services', link: '/contact', state: { subject: 'Consultation Request', type: 'Consultation', message: 'Hey, I would like to request a consultation.' } },
+    { name: 'Bulk Savings Calculator', link: '/bulk-savings-calculator' },
+    { name: 'FAQs', link: '/faq' },
+    { name: 'Find Us on Maps', link: '/contact' },
+    { name: 'Board of Directors', link: '/board-of-directors' },
+    { name: 'Enquiry Form', link: '/contact' },
+    { name: 'Our Legacy', link: '/about/#our-legacy' },
+    { name: 'Our Story', link: '/about/#our-story' },
+    { name: 'Our Vision', link: '/about/#our-vision' },
+    { name: 'Message from Team', link: '/message-from-team' },
+    { name: 'Who we are', link: '/about' },
+    { name: 'What we do', link: '/products' },
+    { name: 'Contact Us', link: '/contact' },
 ];
 
-const QuickSearch = ({ isVisible }: { isVisible: boolean }) => {
+const QuickSearch = ({ isVisible, searchTerm }: { isVisible: boolean, searchTerm: string }) => {
+    const filteredItems = quickSearchItems.filter(item =>
+        item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <motion.div
             initial={{ height: 0, opacity: 0 }}
@@ -33,10 +35,11 @@ const QuickSearch = ({ isVisible }: { isVisible: boolean }) => {
         >
             <h2 className="text-primaryBlack font-bold mb-4">Quick Search</h2>
             <div className="flex flex-wrap gap-4">
-                {quickSearchItems.map((item, index) => (
+                {filteredItems.map((item, index) => (
                     <Link
                         key={index}
                         to={item.link}
+                        state={item.state}
                         className="bg-highlightYellow text-primaryBlack text-sm rounded-full px-6 py-2 flex items-center justify-between"
                     >
                         {item.name} <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="ml-2" />

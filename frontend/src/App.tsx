@@ -10,7 +10,7 @@ import BulkSavingsCalculator from './pages/BulkSavingsCalculator/BulkSavingsCalc
 import AboutPage from './pages/About/AboutPage';
 import BoardOfDirectors from './pages/About/BoardOfDirectors';
 import MessageFromTeam from './pages/About/MessageFromTeam';
-
+import FAQ from './pages/About/FAQ';
 function App() {
   return (
     <Router>
@@ -31,6 +31,7 @@ function App() {
         <Route path="/bulk-savings-calculator" element={<BulkSavingsCalculator />} />
         <Route path="/board-of-directors" element={<BoardOfDirectors />} />
         <Route path="/message-from-team" element={<MessageFromTeam />} />
+        <Route path="/faq" element={<FAQ />} />
       </Routes>
     </Router>
   );

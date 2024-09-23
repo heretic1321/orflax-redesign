@@ -8,9 +8,9 @@ import { useNavigate } from 'react-router-dom';
 
 const menuItems: MenuItem[] = [
     { name: 'Who we are', subItems: [
-        { name: 'Our legacy', link: '/who-we-are/our-legacy' },
-        { name: 'Our story', link: '/who-we-are/our-story' },
-        { name: 'Our vision', link: '/who-we-are/our-vision' },
+        { name: 'Our legacy', link: '/about/#our-legacy' },
+        { name: 'Our story', link: '/about/#our-story' },
+        { name: 'Our vision', link: '/about/#our-vision' },
     ]},
     { name: 'What we do', subItems: [
         { name: 'Our Products', link: '/products' },
@@ -23,7 +23,7 @@ const menuItems: MenuItem[] = [
     ]},
     { name: 'Resources', subItems: [
         { name: 'Bulk Savings Calculator', link: '/bulk-savings-calculator' },
-        { name: 'Frequently Asked Questions', link: '/tools-and-resources/frequently-asked-questions' },
+        { name: 'Frequently Asked Questions', link: '/faq' },
     ] },
     { name: 'Contact Us', subItems: [
         { name: 'Contact Page', link: '/contact' },

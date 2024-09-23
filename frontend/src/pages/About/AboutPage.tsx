@@ -1,10 +1,10 @@
 import Header from '../../components/layout/Header/Header';
-import FAQ from './FAQ';
+import WhoWeAre from './WhoWeAre';
 const AboutPage = () => {
     return (
         <div className="bg-gradient-to-r from-primaryBlack to-primaryGray min-h-screen">
             <Header/>
-            <FAQ/>
+            <WhoWeAre/>
         </div>
     );
 };
