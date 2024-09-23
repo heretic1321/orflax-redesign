@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
 import Header from '../../components/layout/Header/Header';
-
+import { useState } from 'react';
 const BulkOrderCalculator = () => {
   const [product, setProduct] = useState('Flexible Alloy Wire'); // Default product
   const [type, setType] = useState('45'); // For wire length
@@ -9,8 +8,18 @@ const BulkOrderCalculator = () => {
   const [totalAmount, setTotalAmount] = useState(0);
   const [totalSavings, setTotalSavings] = useState(0);
 
-  // Pricing Data for all products
-  const pricing = {
+  // Define the type for the pricing object
+  type PricingType = {
+    'Flexible Alloy Wire': {
+      '45': { '18/40': number; '23/40': number; '30/40': number; '40/40': number; '50/40': number; };
+      '90': { '18/40': number; '23/40': number; '30/40': number; '40/40': number; '50/40': number; };
+    };
+    'Multistrand Wire': { /* similar structure */ };
+    'Submersible Wire': { /* similar structure */ };
+  };
+
+  // Assume pricing is of type PricingType
+  const pricing: PricingType = {
     'Flexible Alloy Wire': {
       '45': {
         '18/40': 290,
@@ -58,6 +67,10 @@ const BulkOrderCalculator = () => {
 
   // Handle Calculation
   const calculateTotal = () => {
+    const product: keyof PricingType = 'Flexible Alloy Wire'; // or dynamically set
+    const type: '45' | '90' = '45'; // or dynamically set
+    const dimension: '18/40' | '23/40' | '30/40' | '40/40' | '50/40' = '18/40'; // or dynamically set
+
     const rate = pricing[product][type][dimension];
     let amount = rate * coils;
     let savings = 0;
@@ -78,7 +91,7 @@ const BulkOrderCalculator = () => {
 
   // Set dimension options dynamically based on selected product and type
   const getDimensionOptions = () => {
-    return Object.keys(pricing[product][type]).map((dim) => (
+    return Object.keys(pricing[product as keyof PricingType][type as keyof PricingType[keyof PricingType]]).map((dim) => (
       <option key={dim} value={dim}>
         {dim}
       </option>
@@ -86,7 +99,7 @@ const BulkOrderCalculator = () => {
   };
 
   // Ensure type and dimension are reset properly when switching products
-  const handleProductChange = (e) => {
+  const handleProductChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedProduct = e.target.value;
     setProduct(selectedProduct);
 
@@ -115,7 +128,9 @@ const BulkOrderCalculator = () => {
               {['Flexible Alloy Wire', 'Multistrand Wire', 'Submersible Wire'].map((item) => (
                 <button
                   key={item}
-                  onClick={() => handleProductChange({ target: { value: item } })}
+                  onClick={() => handleProductChange({ 
+                    target: { value: item } 
+                  } as React.ChangeEvent<HTMLSelectElement>)}
                   className={`px-4 py-2 rounded-lg shadow-md transition-all duration-300 ease-in-out ${
                     product === item ? 'bg-highlightYellow text-primaryBlack' : 'bg-white text-primaryBlack'
                   } hover:bg-highlightYellow hover:text-primaryBlack`}

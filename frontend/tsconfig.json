@@ -7,6 +7,12 @@
   "compilerOptions": {
     // other options...
     "noUnusedLocals": false,
-    "noUnusedParameters": false
-  }
+    "noUnusedParameters": false,
+    "jsx": "react",
+    "allowJs": true,
+    "checkJs": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.js", "src/**/*.jsx"],
 }

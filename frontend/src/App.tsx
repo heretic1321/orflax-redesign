@@ -6,9 +6,8 @@ import ProductsPage from './pages/Products/ProductsPage';
 import productsData from './pages/Products/productsData';
 import SingleProductPage from './pages/Products/SingleProductPage';
 import ContactPage from './pages/Contact/ContactPage';
-import AboutPage from './pages/About/AboutPage';
 import BulkSavingsCalculator from './pages/BulkSavingsCalculator/BulkSavingsCalculator';
-
+import AboutPage from './pages/About/AboutPage';
 function App() {
   return (
     <Router>
