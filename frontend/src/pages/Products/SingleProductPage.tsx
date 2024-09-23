@@ -87,7 +87,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
               / <Link to="/products" className="hover:underline">Products</Link> / <span className="text-secondaryGray">{product.name}</span>
             </nav>
             <h1 className="text-4xl font-bold mb-2 font-secondary text-white">{product.name}</h1>
-            <p className="text-lg mb-4 text-secondaryGray">${filteredData?.rate}</p> 
+            <p className="text-lg mb-4 text-secondaryGray">₹ {filteredData?.rate}</p> 
             <p className="text-lg mb-4 text-white">{product.description}</p>
             <div className="mb-4">
               <h2 className="text-2xl font-bold mb-2 text-secondaryGray">Choose Option:</h2>

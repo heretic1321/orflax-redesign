@@ -176,7 +176,7 @@ const ProductsPage = () => {
                         {product.name}
                       </h3>
                       <p className="text-secondaryGray text-sm text-white group-hover:text-primaryBlack">
-                        from Rs.{product.data[0].rate}
+                        from ₹ {product.data[0].rate}
                       </p>
                     </div>
                     <motion.div className="text-white group-hover:text-primaryBlack">
