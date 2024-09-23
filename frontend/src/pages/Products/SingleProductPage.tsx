@@ -42,9 +42,9 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
 
   const handleEnquire = () => {
     const enquiryData = {
-      product: product.name,
-      options: selectedOptions,
-      details: filteredData,
+      subject: `Enquiry about ${product.name}`,
+      type: 'Order Enquiry',
+      message: `I would like to enquire about the following product:\n\nProduct: ${product.name}\nLength: ${selectedOptions.length} metres\nNormal Area of Conductor: ${selectedOptions.normalAreaOfConductor} sq.mm\n${selectedOptions.core ? `Core: ${selectedOptions.core}\n` : ''}${selectedOptions.conductorType ? `Conductor Type: ${selectedOptions.conductorType}\n` : ''}Rate: ₹${filteredData?.rate}\n\nPlease provide more details.`,
     };
     navigate('/contact', { state: { enquiryData } });
   };
@@ -57,16 +57,15 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
           {/* Left Section */}
           <div className="w-full lg:w-1/3 pr-8">
             <div className="relative border border-white border-solid border-4 w-full">
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-0"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white z-0"></div>
               <img 
                 src={`/images/cables/${product.image}`} 
                 alt={product.name} 
-                className=" object-cover relative z-10"
+                className="object-cover relative z-10"
               />
-              
             </div>
             <div className="bg-[#c7c7c7] pb-6 pt-8">
-              <div className="grid grid-cols-1 gap-4 ">
+              <div className="grid grid-cols-1 gap-4">
                 <div className="flex justify-between">
                   <span className="pl-4">Length:</span>
                   <span className="px-4">{filteredData?.length} metres</span>
