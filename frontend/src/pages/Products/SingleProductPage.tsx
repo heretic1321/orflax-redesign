@@ -26,26 +26,20 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
   }
 
   // Define the order of options
-  const optionOrder: (keyof CableOptions)[] = ['length', 'normalAreaOfConductor', 'cores', 'conductorType', 'size'];
+  const optionOrder: (keyof CableOptions)[] = ['length', 'cores', 'normalAreaOfConductor', 'conductorType', 'size'];
 
 
-  // Initialize selectedOptions with the options from the first data item
-  const initialSelectedOptions: SelectedOptions = {};
-  if (product.data && product.data.length > 0) {
-    const firstDataItem = product.data[0];
-    optionOrder.forEach((optionType) => {
-      if (firstDataItem[optionType] !== undefined) {
-        initialSelectedOptions[optionType] = firstDataItem[optionType];
-      } else {
-        initialSelectedOptions[optionType] = null;
-      }
-    });
-  } else {
-    // Handle case where there's no data
-    optionOrder.forEach((optionType) => {
-      initialSelectedOptions[optionType] = null;
-    });
-  }
+  // Initialize selectedOptions with the first valid combination from data
+const initialSelectedOptions: SelectedOptions = {};
+if (product.data && product.data.length > 0) {
+  const firstDataItem = product.data[0];
+  Object.keys(firstDataItem).forEach((key) => {
+    if (optionOrder.includes(key as keyof CableOptions)) {
+      initialSelectedOptions[key] = firstDataItem[key];
+    }
+  });
+}
+
 
 
   const [selectedOptions, setSelectedOptions] = useState<SelectedOptions>(initialSelectedOptions);
@@ -53,14 +47,10 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
     optionType: keyof CableOptions,
     currentSelections: SelectedOptions
   ): (number | string)[] => {
-    // Only consider options prior to the current one in optionOrder
-    const index = optionOrder.indexOf(optionType);
-    const selectedOptionTypes = optionOrder.slice(0, index).filter(
-      (key) => currentSelections[key] !== undefined && currentSelections[key] !== null
-    );
-  
     const matchingItems = product.data.filter((item) =>
-      selectedOptionTypes.every((optionKey) => item[optionKey] === currentSelections[optionKey])
+      Object.keys(currentSelections).every((key) =>
+        key === optionType || currentSelections[key] === null || item[key] === currentSelections[key]
+      )
     );
   
     const availableOptions = matchingItems
@@ -71,6 +61,7 @@ const ProductPage: React.FC<ProductPageProps> = ({ product }) => {
   
     return availableOptions;
   };
+  
   
   
   // Calculate available options for each option type

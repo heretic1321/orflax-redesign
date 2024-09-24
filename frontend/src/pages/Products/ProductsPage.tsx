@@ -3,32 +3,38 @@ import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaArrowRight } from 'react-icons/fa';
 import Header from '../../components/layout/Header/Header';
-import productsData from './productsData'; // Updated import
+import productsData from './productsData';
 import { CableProduct } from './../../types/product';
 
 // Define the type for filterOptions keys
-type FilterOptionKeys = 'series' | 'conductorType' | 'core' | 'length';
+type FilterOptionKeys = 'series' | 'conductorType' | 'cores' | 'length' | 'rate';
 
 // Ensure filterOptions is typed correctly
-const filterOptions: Record<FilterOptionKeys, { id: number; name: string, value: string }[]> = {
+const filterOptions: Record<FilterOptionKeys, { id: number; name: string; value: string }[]> = {
   series: [
     { id: 1, name: 'Evo', value: 'Evo' },
     { id: 2, name: 'Nexa', value: 'Nexa' },
   ],
   conductorType: [
-    { id: 1, name: 'Single Conductor', value: 'Single' },
-    { id: 2, name: 'Multiple Conductor', value: 'Multiple' },
+    { id: 3, name: 'Single Conductor', value: 'Single' },
+    { id: 4, name: 'Multiple Conductor', value: 'Multiple' },
   ],
-  core: [
-    { id: 1, name: '2 cores', value: '2' },
-    { id: 2, name: '3 cores', value: '3' },
-    { id: 3, name: '4 cores', value: '4' },
+  cores: [
+    { id: 5, name: '2 cores', value: '2' },
+    { id: 6, name: '3 cores', value: '3' },
+    { id: 7, name: '4 cores', value: '4' },
   ],
   length: [
-    { id: 1, name: '45 meters', value: '45' },
-    { id: 2, name: '90 meters', value: '90' },
-    { id: 3, name: '100 meters', value: '100' },
-    { id: 4, name: '250 meters', value: '250' },
+    { id: 8, name: '45 meters', value: '45' },
+    { id: 9, name: '90 meters', value: '90' },
+    { id: 10, name: '100 meters', value: '100' },
+    { id: 11, name: '250 meters', value: '250' },
+  ],
+  rate: [
+    { id: 12, name: 'Below ₹1000', value: '0-1000' },
+    { id: 13, name: '₹1000 - ₹5000', value: '1000-5000' },
+    { id: 14, name: '₹5000 - ₹10000', value: '5000-10000' },
+    { id: 15, name: 'Above ₹10000', value: '10000-' },
   ],
 };
 
@@ -69,17 +75,36 @@ const ProductsPage = () => {
           .filter((option) => selectedOptions.includes(option.id))
           .map((option) => option.value);
 
-        if (filterName === 'series' && !filterOptionValues.includes(product.series[0])) {
+        if (filterName === 'series' && !product.series.some(series => filterOptionValues.includes(series))) {
           return false;
         }
-        if (filterName === 'conductorType' && !filterOptionValues.includes(product.options.conductorType?.toString()!)) {
+        if (filterName === 'conductorType' && !product.options.conductorType?.some(ct => filterOptionValues.includes(ct))) {
           return false;
         }
-        if (filterName === 'core' && !filterOptionValues.includes(product.options.cores?.toString()!)) {
+        if (filterName === 'cores' && !product.options.cores?.some(core => filterOptionValues.includes(core.toString()))) {
           return false;
         }
-        if (filterName === 'length' && !filterOptionValues.includes(product.options.length?.toString() ?? '')) {
+        if (filterName === 'length' && !product.options.length?.some(length => filterOptionValues.includes(length.toString()))) {
           return false;
+        }
+        if (filterName === 'rate') {
+          // Convert filterOptionValues to ranges
+          const ranges = filterOptionValues.map(value => {
+            const [minStr, maxStr] = value.split('-');
+            const min = parseFloat(minStr);
+            const max = maxStr === '' ? Infinity : parseFloat(maxStr);
+            return { min, max };
+          });
+
+          // Check if any rate in product.data falls within the selected ranges
+          const matchesRate = product.data.some(dataItem => {
+            const rate = dataItem.rate ?? -1; // Provide a default value
+            return rate !== -1 && ranges.some(range => rate >= range.min && rate <= range.max);
+          });
+
+          if (!matchesRate) {
+            return false;
+          }
         }
       }
     }

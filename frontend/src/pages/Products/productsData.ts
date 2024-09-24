@@ -40,15 +40,15 @@ const productsData: { [key: string]: CableProduct } = {
             cores: [2, 3, 4]
         },
         data: [
-            { series: "Evo", length: 90, normalAreaOfConductor: 0.75, core: 2, dimension: "23/60", rate: 2330, package: 8 },
-            { series: "Evo", length: 90, normalAreaOfConductor: 0.75, core: 3, dimension: "23/60", rate: 3400, package: 8 },
-            { series: "Evo", length: 90, normalAreaOfConductor: 1.5, core: 2, dimension: "36/0.3", rate: 5850, package: 5 },
-            { series: "Evo", length: 90, normalAreaOfConductor: 1.5, core: 3, dimension: "36/0.3", rate: 8660, package: 4 },
-            { series: "Evo", length: 90, normalAreaOfConductor: 1.5, core: 4, dimension: "36/0.3", rate: 10980, package: 4 },
-            { series: "Evo", length: 90, normalAreaOfConductor: 2.5, core: 2, dimension: "56/0.3", rate: 9190, package: 4 },
-            { series: "Evo", length: 90, normalAreaOfConductor: 2.5, core: 3, dimension: "56/0.3", rate: 13580, package: 4 },
-            { series: "Evo", length: 90, normalAreaOfConductor: 2.5, core: 4, dimension: "56/0.3", rate: 18150, package: 4 },
-            { series: "Evo", length: 90, normalAreaOfConductor: 4.0, core: 2, dimension: "56/0.3", rate: 14400, package: 4 }
+            { series: "Evo", length: 90, normalAreaOfConductor: 0.75, cores: 2, dimension: "23/60", rate: 2330, package: 8 },
+            { series: "Evo", length: 90, normalAreaOfConductor: 0.75, cores: 3, dimension: "23/60", rate: 3400, package: 8 },
+            { series: "Evo", length: 90, normalAreaOfConductor: 1.5, cores: 2, dimension: "36/0.3", rate: 5850, package: 5 },
+            { series: "Evo", length: 90, normalAreaOfConductor: 1.5, cores: 3, dimension: "36/0.3", rate: 8660, package: 4 },
+            { series: "Evo", length: 90, normalAreaOfConductor: 1.5, cores: 4, dimension: "36/0.3", rate: 10980, package: 4 },
+            { series: "Evo", length: 90, normalAreaOfConductor: 2.5, cores: 2, dimension: "56/0.3", rate: 9190, package: 4 },
+            { series: "Evo", length: 90, normalAreaOfConductor: 2.5, cores: 3, dimension: "56/0.3", rate: 13580, package: 4 },
+            { series: "Evo", length: 90, normalAreaOfConductor: 2.5, cores: 4, dimension: "56/0.3", rate: 18150, package: 4 },
+            { series: "Evo", length: 90, normalAreaOfConductor: 4.0, cores: 2, dimension: "56/0.3", rate: 14400, package: 4 }
         ]
     },
     // Submersible Cables
@@ -85,25 +85,25 @@ const productsData: { [key: string]: CableProduct } = {
         },
         data: [
             // Single Conductor Options
-            { series: "Evo", length: 100, normalAreaOfConductor: 6.0, core: 2, dimension: "1/2.76", conductorType: "Single", rate: 3780, package: 4 },
-            { series: "Evo", length: 100, normalAreaOfConductor: 10.0, core: 2, dimension: "1/3.57", conductorType: "Single", rate: 6075, package: 4 },
+            { series: "Evo", length: 100, normalAreaOfConductor: 6.0, cores: 2, dimension: "1/2.76", conductorType: "Single", rate: 3780, package: 4 },
+            { series: "Evo", length: 100, normalAreaOfConductor: 10.0, cores: 2, dimension: "1/3.57", conductorType: "Single", rate: 6075, package: 4 },
             
             // Multiple Conductor Options
-            { series: "Evo", length: 100, normalAreaOfConductor: 2.5, core: 2, dimension: "7/0.67", conductorType: "Multiple", rate: 2075, package: 4 },
-            { series: "Evo", length: 100, normalAreaOfConductor: 4.0, core: 2, dimension: "7/0.82", conductorType: "Multiple", rate: 2660, package: 4 },
-            { series: "Evo", length: 100, normalAreaOfConductor: 6.0, core: 2, dimension: "7/1.45", conductorType: "Multiple", rate: 4800, package: 4 },
-            { series: "Evo", length: 100, normalAreaOfConductor: 10.0, core: 2, dimension: "7/1.35", conductorType: "Multiple", rate: 6345, package: 4 },
-            { series: "Evo", length: 100, normalAreaOfConductor: 16.0, core: 2, dimension: "7/1.70", conductorType: "Multiple", rate: 10310, package: 2 },
-            { series: "Evo", length: 100, normalAreaOfConductor: 2.5, core: 3, dimension: "7/0.67", conductorType: "Multiple", rate: 2735, package: 4 },
-            { series: "Evo", length: 100, normalAreaOfConductor: 4.0, core: 3, dimension: "7/0.82", conductorType: "Multiple", rate: 3975, package: 4 },
-            { series: "Evo", length: 100, normalAreaOfConductor: 6.0, core: 3, dimension: "7/1.45", conductorType: "Multiple", rate: 6450, package: 4 },
-            { series: "Evo", length: 100, normalAreaOfConductor: 10.0, core: 3, dimension: "7/1.35", conductorType: "Multiple", rate: 9045, package: 4 },
-            { series: "Evo", length: 100, normalAreaOfConductor: 16.0, core: 3, dimension: "7/1.70", conductorType: "Multiple", rate: 13778, package: 2 },
-            { series: "Evo", length: 100, normalAreaOfConductor: 2.5, core: 4, dimension: "7/0.67", conductorType: "Multiple", rate: 3575, package: 4 },
-            { series: "Evo", length: 100, normalAreaOfConductor: 4.0, core: 4, dimension: "7/0.82", conductorType: "Multiple", rate: 4655, package: 4 },
-            { series: "Evo", length: 100, normalAreaOfConductor: 6.0, core: 4, dimension: "7/1.45", conductorType: "Multiple", rate: 7925, package: 4 },
-            { series: "Evo", length: 100, normalAreaOfConductor: 10.0, core: 4, dimension: "7/1.35", conductorType: "Multiple", rate: 11655, package: 2 },
-            { series: "Evo", length: 100, normalAreaOfConductor: 16.0, core: 4, dimension: "7/1.70", conductorType: "Multiple", rate: 17630, package: 2 }
+            { series: "Evo", length: 100, normalAreaOfConductor: 2.5, cores: 2, dimension: "7/0.67", conductorType: "Multiple", rate: 2075, package: 4 },
+            { series: "Evo", length: 100, normalAreaOfConductor: 4.0, cores: 2, dimension: "7/0.82", conductorType: "Multiple", rate: 2660, package: 4 },
+            { series: "Evo", length: 100, normalAreaOfConductor: 6.0, cores: 2, dimension: "7/1.45", conductorType: "Multiple", rate: 4800, package: 4 },
+            { series: "Evo", length: 100, normalAreaOfConductor: 10.0, cores: 2, dimension: "7/1.35", conductorType: "Multiple", rate: 6345, package: 4 },
+            { series: "Evo", length: 100, normalAreaOfConductor: 16.0, cores: 2, dimension: "7/1.70", conductorType: "Multiple", rate: 10310, package: 2 },
+            { series: "Evo", length: 100, normalAreaOfConductor: 2.5, cores: 3, dimension: "7/0.67", conductorType: "Multiple", rate: 2735, package: 4 },
+            { series: "Evo", length: 100, normalAreaOfConductor: 4.0, cores: 3, dimension: "7/0.82", conductorType: "Multiple", rate: 3975, package: 4 },
+            { series: "Evo", length: 100, normalAreaOfConductor: 6.0, cores: 3, dimension: "7/1.45", conductorType: "Multiple", rate: 6450, package: 4 },
+            { series: "Evo", length: 100, normalAreaOfConductor: 10.0, cores: 3, dimension: "7/1.35", conductorType: "Multiple", rate: 9045, package: 4 },
+            { series: "Evo", length: 100, normalAreaOfConductor: 16.0, cores: 3, dimension: "7/1.70", conductorType: "Multiple", rate: 13778, package: 2 },
+            { series: "Evo", length: 100, normalAreaOfConductor: 2.5, cores: 4, dimension: "7/0.67", conductorType: "Multiple", rate: 3575, package: 4 },
+            { series: "Evo", length: 100, normalAreaOfConductor: 4.0, cores: 4, dimension: "7/0.82", conductorType: "Multiple", rate: 4655, package: 4 },
+            { series: "Evo", length: 100, normalAreaOfConductor: 6.0, cores: 4, dimension: "7/1.45", conductorType: "Multiple", rate: 7925, package: 4 },
+            { series: "Evo", length: 100, normalAreaOfConductor: 10.0, cores: 4, dimension: "7/1.35", conductorType: "Multiple", rate: 11655, package: 2 },
+            { series: "Evo", length: 100, normalAreaOfConductor: 16.0, cores: 4, dimension: "7/1.70", conductorType: "Multiple", rate: 17630, package: 2 }
         ]
     },
     aluminiumSolidConductorCable : {
@@ -161,7 +161,7 @@ const productsData: { [key: string]: CableProduct } = {
         series: ["Evo"],
         options: {
             length: [45, 90], // Available lengths
-            normalAreaOfConductor: ["23/52", "40/52", "16/02", "24/02", "32/02", "22/02"], // Conductor areas and dimensions
+            normalAreaOfConductor: ["23/60", "40/60", "16/0.2", "24/0.2", "32/0.2", "22/0.2"], // Conductor areas and dimensions
         },
         data: [
             { series: "Evo", length: 45, normalAreaOfConductor: "23/60", dimension: "23/60", rate: 960, package: 30 },
@@ -185,7 +185,7 @@ const productsData: { [key: string]: CableProduct } = {
         description: "PVC insulated flexible copper wire for various electrical and industrial applications. Available in different conductor sizes with options for 45 or 90 meters.",
         series: ["Evo"],
         options: {
-            length: [45, 90], // Available lengths
+            length: [45,90 ], // Available lengths
             normalAreaOfConductor: ["14/76", "18/76", "23/76", "30/76", "40/76", "50/76", "60/76"] // Conductor areas
         },
         data: [
@@ -195,7 +195,14 @@ const productsData: { [key: string]: CableProduct } = {
             { series: "Evo", length: 45, normalAreaOfConductor: "30/76", rate: 670, package: 24 },
             { series: "Evo", length: 45, normalAreaOfConductor: "40/76", rate: 870, package: 20 },
             { series: "Evo", length: 45, normalAreaOfConductor: "50/76", rate: 1070, package: 20 },
-            { series: "Evo", length: 45, normalAreaOfConductor: "60/76", rate: 1260, package: 16 }
+            { series: "Evo", length: 45, normalAreaOfConductor: "60/76", rate: 1260, package: 16 },
+            { series: "Evo", length: 90, normalAreaOfConductor: "14/76", rate: 680, package: 24 },
+            { series: "Evo", length: 90, normalAreaOfConductor: "18/76", rate: 850, package: 24 },
+            { series: "Evo", length: 90, normalAreaOfConductor: "23/76", rate: 1050, package: 20 },
+            { series: "Evo", length: 90, normalAreaOfConductor: "30/76", rate: 1335, package: 20 },
+            { series: "Evo", length: 90, normalAreaOfConductor: "40/76", rate: 1735, package: 16 },
+            { series: "Evo", length: 90, normalAreaOfConductor: "50/76", rate: 2130, package: 12 },
+            { series: "Evo", length: 90, normalAreaOfConductor: "60/76", rate: 2500, package: 10 }
          ]
     },
     nexaMultistrandWires : {
@@ -206,7 +213,7 @@ const productsData: { [key: string]: CableProduct } = {
         series: ["Nexa"],
         options: {
             length: [90], // Available length (90 meters)
-            normalAreaOfConductor: [0.75, 1.00, 1.50, 2.50, 4.00, 6.00, 10.00] // Conductor areas
+            normalAreaOfConductor: ["0.75", "1.00", "1.50", "2.50", "4.00", "6.00", "10.00"] // Conductor areas
         },
         data: [
             { series: "Nexa", length: 90, normalAreaOfConductor: "0.75", dimension: "24/0.2", rate: 1640, package: 24 },
@@ -225,8 +232,8 @@ const productsData: { [key: string]: CableProduct } = {
         description: "PVC Insulated and Sheathed 3 Core Flat Copper Conductor Industrial Cables for submersible applications, compliant with IS:694 standards.",
         series: ["Nexa"],
         options: {
-            length: [100, 250, 500], // Available lengths in meters
-            normalAreaOfConductor: [1.50, 2.50, 4.00, 6.00, 10.00] // Conductor areas
+            length: [100], // Available lengths in meters
+            normalAreaOfConductor: ["1.50", "2.50", "4.00", "6.00", "10.00"] // Conductor areas
         },
         data: [
             { series: "Nexa", length: 100, normalAreaOfConductor: "1.50", dimension: "22/0.3", currentCapacity: 16, rate: 10950, package: "Standard" },
