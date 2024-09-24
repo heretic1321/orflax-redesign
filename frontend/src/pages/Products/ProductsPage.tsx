@@ -78,7 +78,7 @@ const ProductsPage = () => {
         if (filterName === 'core' && !filterOptionValues.includes(product.options.cores?.toString()!)) {
           return false;
         }
-        if (filterName === 'length' && !filterOptionValues.includes(product.options.length?.toString())) {
+        if (filterName === 'length' && !filterOptionValues.includes(product.options.length?.toString() ?? '')) {
           return false;
         }
       }
@@ -164,7 +164,7 @@ const ProductsPage = () => {
                     <img
                       src={`/images/cables/${product.image}`}
                       alt={product.name}
-                      className="w-full h-full object-cover relative z-10"
+                      className="w-full h-full object-cover relative z-0"
                     />
                   </div>
                   <motion.div
