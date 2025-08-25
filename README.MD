@@ -1,3 +1,14 @@
+<p align="center">
+  <a href="https://orflaxindia.com">
+    <img src="docs/home.webp" alt="Orflax demo" width="900">
+  </a><br/>
+  <sub>Built in 24 hours. Deployed. Won INNOVORTEX 2024.</sub>
+</p>
+
+[![Winner](https://img.shields.io/badge/Hackathon%20Winner-INNOVORTEX%202024-8a2be2)](#)
+[![Live](https://img.shields.io/badge/Live-orflaxindia.com-00b894)](https://orflaxindia.com)
+[![Tech](https://img.shields.io/badge/React-18-blue)](#)
+
 ### Orflax Website (INNOVORTEX 2024 Winner)
 
 Built in a single day by two developers for INNOVORTEX 2024 — we won, and the sponsors adopted it. The site is live at [orflaxindia.com](https://orflaxindia.com).
